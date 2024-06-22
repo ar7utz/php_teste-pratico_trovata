@@ -1,8 +1,15 @@
 <?php
+session_start();
 include './banco/conexao.php';
 
 $query = "SELECT * FROM empresa";
 $result = $conn->query($query);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $_SESSION['empresa'] = $_POST['empresa'];
+    header('Location: ./modulos/produtos.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
