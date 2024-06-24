@@ -34,52 +34,65 @@ $row = $result->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Visualizar Produto</title>
+    <title>Visualizar produto</title>
 </head>
 <body>
-    <h1 class="text-center">Visualizar Produto - <p><?php echo $row['DESCRICAO_PRODUTO']; ?></p></h1>
-    
+    <h1 class="text-center">Visualizar - <p><?php echo $row['DESCRICAO_PRODUTO']; ?></p></h1>
     <div class="container">
     <a href="../../modulos/produtos.php" class="btn btn-secondary">Voltar</a>
     <a href="../produto/editar_produto.php?empresa=<?php echo $empresa; ?>&produto=<?php echo $produto; ?>" class="btn btn-primary">Editar</a>
         <form action="editar_prod.php" method="POST">
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição:</label>
-                <textarea readonly class="form-control" id="descricao" name="descricao"><?php echo $row['DESCRICAO_PRODUTO']; ?></textarea readonly>
+                <textarea readonly class="form-control" id="descricao" name="descricao"><?php echo $row['DESCRICAO_PRODUTO']; ?></textarea>
             </div>
-            <div class="mb-3">
-                <label for="produto" class="form-label">Produto:</label>
-                <input type="text" class="form-control" id="produto" name="produto" value="<?php echo $row['PRODUTO']; ?>" readonly>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <label for="produto" class="form-label">Produto:</label>
+                        <input type="text" class="form-control" id="produto" name="produto" value="<?php echo $row['PRODUTO']; ?>" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="apelido" class="form-label">Apelido:</label>
+                        <input type="text" class="form-control" id="apelido" name="apelido" value="<?php echo $row['APELIDO_PRODUTO']; ?>" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="grupo" class="form-label">Grupo:</label>
+                        <input type="text" class="form-control" id="grupo" name="grupo" value="<?php echo $row['GRUPO_PRODUTO']; ?>" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="subgrupo" class="form-label">Subgrupo:</label>
+                        <input type="text" class="form-control" id="subgrupo" name="subgrupo" value="<?php echo $row['SUBGRUPO_PRODUTO']; ?>" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="situacao" class="form-label">Situação:</label>
+                        <input type="text" class="form-control" id="situacao" value="<?php echo $row['SITUACAO']; ?>" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="peso" class="form-label">Peso Líquido:</label>
+                        <input type="text" class="form-control" id="peso" name="peso" value="<?php echo $row['PESO_LIQUIDO']; ?>" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="classificacao" class="form-label">Classificação:</label>
+                        <input type="text" class="form-control" id="classificacao" name="classificacao" value="<?php echo $row['CLASSIFICACAO_FISCAL']; ?>" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="colecao" class="form-label">Coleção:</label>
+                        <input type="text" class="form-control" id="colecao" name="colecao" value="<?php echo $row['COLECAO']; ?>" readonly>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="apelido" class="form-label">Apelido:</label>
-                <input type="text" class="form-control" id="apelido" name="apelido" value="<?php echo $row['APELIDO_PRODUTO']; ?>" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="grupo" class="form-label">Grupo:</label>
-                <input type="text" class="form-control" id="grupo" name="grupo" value="<?php echo $row['GRUPO_PRODUTO']; ?>" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="subgrupo" class="form-label">Subgrupo:</label>
-                <input type="text" class="form-control" id="subgrupo" name="subgrupo" value="<?php echo $row['SUBGRUPO_PRODUTO']; ?>" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="peso" class="form-label">Peso Líquido:</label>
-                <input type="text" class="form-control" id="peso" name="peso" value="<?php echo $row['PESO_LIQUIDO']; ?>" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="classificacao" class="form-label">Classificação:</label>
-                <input type="text" class="form-control" id="classificacao" name="classificacao" value="<?php echo $row['CLASSIFICACAO_FISCAL']; ?>" readonly>
-            </div>
+
             <div class="mb-3">
                 <label for="cod-barras" class="form-label">Código de Barras:</label>
-                <input type="text" class="form-control" id="cod-barras" name="cod-barras" value="<?php echo $row['CODIGO_BARRAS']; ?>" readonly>
+                <input type="text" class="form-control" id="cod-barras" name="cod-barras" value="<?php echo $row['CODIGO_BARRAS']; ?>" disabled readonly>
             </div>
-            <input type="hidden" name="empresa" value="<?php echo $empresa; ?>">
-            <input type="hidden" name="produto" value="<?php echo $produto; ?>">
         </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+

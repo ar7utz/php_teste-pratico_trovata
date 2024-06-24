@@ -2,12 +2,12 @@
 session_start();
 include '../../banco/conexao.php';
 
-if (isset($_GET['empresa_id'])) {
-    $transacaoId = $_GET['empresa_id'];
-    
-    $sql = "DELETE FROM produto WHERE empresa = ?";
+    $empresa_id = $_SESSION['empresa_id'];
+    $produto = $_GET['produto'];
+
+    $sql = "DELETE FROM produto WHERE empresa = ? AND PRODUTO = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $empresa_id);
+    $stmt->bind_param('is', $empresa_id, $produto);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
@@ -15,7 +15,6 @@ if (isset($_GET['empresa_id'])) {
     } else {
         echo 'Falha ao excluir.';
     }
-} else {
-    echo 'ID do produto não fornecido.';
-}
+    header("Location: ../produtos.php");
+    exit();
 ?>

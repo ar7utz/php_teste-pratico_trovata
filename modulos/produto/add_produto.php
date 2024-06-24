@@ -37,10 +37,10 @@
                 <div class="row">
                     <div class="col">
                     <label for="situacao" class="form-label">Situação:</label>
-                        <select class="form-select form-select-md" id="situacao" name="situacao">
+                        <select required class="form-select form-select-md" id="situacao" name="situacao">
                             <option selected disabled>Selecione a Situação</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
                         </select>
                     </div>
                     <div class="col">

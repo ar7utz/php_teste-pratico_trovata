@@ -28,16 +28,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h1 class="card-title">Escolha a empresa</h1>
             <form action="" method="POST">
                 <select name="empresa_id" class="form-select mb-3">
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <option value="<?php echo $row['empresa_id']; ?>">
-                            <?php echo $row['RAZAO_SOCIAL'] . " - " . $row['CIDADE']; ?>
-                        </option>
-                    <?php endwhile; ?>
+                    <?php
+                    $addedEmpresas = []; // Array para armazenar empresas já adicionadas
+
+                    while ($row = $result->fetch_assoc()) :
+                        $empresa_id = $row['empresa_id'];
+                        $razao_social = $row['RAZAO_SOCIAL'];
+                        $cidade = $row['CIDADE'];
+
+                        // Verifica se a empresa já foi adicionada
+                        if (!in_array($empresa_id, $addedEmpresas)) {
+                            $addedEmpresas[] = $empresa_id; // Adiciona o ID da empresa ao array
+
+                            // Imprime a opção no select
+                            echo '<option value="' . $empresa_id . '">';
+                            echo $razao_social . " - " . $cidade;
+                            echo '</option>';
+                        }
+                    endwhile;
+                    ?>
                 </select>
                 <button type="submit" class="btn btn-dark">Selecionar</button>
             </form>
         </div>
     </div>
+</body>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
